@@ -7,7 +7,7 @@ $page_title="Inicio de sesion";
  <?php include_once('layouts/header.php'); ?>
 
 <div class="container-fluid" >
-<div class="login-page">
+
 	<div class="text-center" style="margin-top: 50px">
     <img src="libs/images/1.png" class="img-fluid" style="height: 30%" alt="Responsive image">
   
@@ -33,7 +33,7 @@ $page_title="Inicio de sesion";
 		  </div>
     </form>
 </div>
-</div>
+
 </div>
 
 
