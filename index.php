@@ -2,7 +2,15 @@
   ob_start();
 $page_title="Inicio de sesion";
   require_once('includes/load.php');
-  if($session->isUserLoggedIn(true)) { redirect('admin.php', false);}
+  if($session->isUserLoggedIn(true)) { 
+    $user_id=$_SESSION['user_id'];
+    $current_user1 = find_by_id('users',$user_id);
+  if($current_user1['user_level']==1){
+      redirect('admin/panel.php');
+     }else{
+     redirect('cliente/form-init.php',false);
+   }
+  }
 ?>
  <?php include_once('layouts/header.php'); ?>
 

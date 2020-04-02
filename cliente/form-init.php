@@ -1,7 +1,8 @@
 <html>
 <header>
-	<?php require('../includes/load.php');?>
-	<?php include('layouts/header.php');?>
+	<?php require('../includes/load.php');
+	 include('layouts/header.php');
+	?>
 </header>
 <nav><?php include('layouts/nav.php') ?>
 </nav>

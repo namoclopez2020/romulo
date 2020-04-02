@@ -10,6 +10,7 @@ $nombre=remove_junk($db->escape($_POST['nombre']));
 $apellido=remove_junk($db->escape($_POST['apellidos']));
 $celular= remove_junk($db->escape($_POST['celular']));
 $email=remove_junk($db->escape($_POST['email']));
+$status=0;
 
 $username=$email;
 $password_vista="12345678";
@@ -17,7 +18,7 @@ $password_vista="12345678";
 $password= sha1('12345678');
 $nivel=2;
 //en este bloque validamos que email no repita 
-$validacion="SELECT COUNT(*) AS cuenta from user where username='{$email}'";
+$validacion="SELECT COUNT(*) AS cuenta from users where username='{$email}'";
 $cont=$db->query($validacion);
 $count=$db->fetch_array($cont);
 $cuenta=$count['cuenta'];
@@ -27,13 +28,13 @@ if($cuenta>0){
 	redirect('form-init.php',false);
 }
 //aca procedemos con la hacer la insercion luego de validador el email
-$sql="INSERT INTO user (username,password,nivel_usuario) VALUES ('{$username}','{$password}',{$nivel})";
+$sql="INSERT INTO users (name,username,password,user_level,image,status,last_login) VALUES ('{$nombre}','{$username}','{$password}',{$nivel},'','{$status}','')";
 $db->query($sql);
 
-$consulta="SElECT id_user FROM user where username='$username'";
+$consulta="SElECT id FROM users where username='$username'";
 $datos=$db->query($consulta);
 while($data=$db->fetch_array($datos)){
-	$id_user=$data['id_user'];
+	$id_user=$data['id'];
 }
 $sql_cliente="INSERT INTO cliente (nombre_cliente,apellido_cliente,id_usuario,celular_cliente,email_cliente) VALUES ('{$nombre}','{$apellido}',{$id_user},'{$celular}','{$email}')";
 if($db->query($sql_cliente) && $db->affected_rows()==1){
